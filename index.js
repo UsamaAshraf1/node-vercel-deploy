@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Configure multer for file uploads
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: "uploads/" });
 
 async function generateAccessToken(keyFilePath) {
   const scopes = ["https://www.googleapis.com/auth/firebase.messaging"];
@@ -25,19 +25,20 @@ async function generateAccessToken(keyFilePath) {
 }
 
 // Endpoint to generate an access token
-app.post("/generate-access-token", upload.single('file'), async (req, res) => {
-  try {
-    const keyFilePath = req.file.path;
-    const accessToken = await generateAccessToken(keyFilePath);
+app.post("/generate-access-token", upload.single("file"), async (req, res) => {
+  // try {
+  //   const keyFilePath = req.file.path;
+  //   const accessToken = await generateAccessToken(keyFilePath);
 
-    // Delete the uploaded file after use
-    fs.unlinkSync(keyFilePath);
+  //   // Delete the uploaded file after use
+  //   fs.unlinkSync(keyFilePath);
 
-    res.json({ accessToken });
-  } catch (error) {
-    console.error("Error generating access token:", error);
-    res.status(500).send("Internal Server Error");
-  }
+  //   res.json({ accessToken });
+  // } catch (error) {
+  //   console.error("Error generating access token:", error);
+  //   res.status(500).send("Internal Server Error");
+  // }
+  res.send("connected Successfully");
 });
 
 const PORT = process.env.PORT || 5000;
