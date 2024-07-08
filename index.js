@@ -41,6 +41,10 @@ app.post("/generate-access-token", upload.single("file"), async (req, res) => {
   res.send("connected Successfully");
 });
 
+app.post("/", async (req, res) => {
+  res.send("home connected Successfully");
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
