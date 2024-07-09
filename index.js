@@ -73,7 +73,7 @@ app.get("/generate-access-token", async (req, res) => {
     // Specify the path to your static key file
     const keyFilePath = path.join(
       __dirname,
-      "./adminpanel-latest-firebase-adminsdk-h8mjb-8576a3ae14.json"
+      "./data/adminpanel-latest-firebase-adminsdk-h8mjb-8576a3ae14.json"
     );
     const accessToken = await generateAccessToken(keyFilePath);
 
@@ -82,6 +82,10 @@ app.get("/generate-access-token", async (req, res) => {
     console.error("Error generating access token:", error);
     res.status(500).send("Internal Server Error");
   }
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello from Express Server!");
 });
 
 const PORT = process.env.PORT || 5000;
