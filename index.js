@@ -2,9 +2,11 @@ const express = require("express");
 const { GoogleAuth } = require("google-auth-library");
 const bodyParser = require("body-parser");
 const multer = require("multer");
+const cors = require("cors"); // Import the cors middleware
 
 const app = express();
 
+app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
 // Configure multer for memory storage
@@ -26,7 +28,7 @@ async function generateAccessToken(keyFileBuffer) {
 }
 
 // Endpoint to generate an access token
-app.post("/generate-access-token", upload.single('file'), async (req, res) => {
+app.post("/generate-access-token", upload.single("file"), async (req, res) => {
   try {
     const keyFileBuffer = req.file.buffer;
     const accessToken = await generateAccessToken(keyFileBuffer);
